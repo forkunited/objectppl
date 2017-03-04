@@ -15,7 +15,6 @@ def read_messy_file(file_path):
     try:
         reader = csv.DictReader(f, delimiter=',')
         for record in reader:
-            record["gameid"] = record["gameid"].replace("/", "_");
             if record["gameid"] not in D:
                 D[record["gameid"]] = []
             D[record["gameid"]].append(record)
@@ -80,7 +79,7 @@ def make_action_records(record):
 
     action = dict()
     action["gameid"] = record["gameid"]
-    action["roundNum"] = record["roundNum"]
+    action["roundNum"] = int(record["roundNum"])
     action["time"] = int(record["time"])
 
     for i in range(len(listenerObjs)):
@@ -119,7 +118,7 @@ def make_utterance_records(record):
 
         utterance = dict()
         utterance["gameid"] = record["gameid"]
-        utterance["roundNum"] = record["roundNum"]
+        utterance["roundNum"] = int(record["roundNum"])
         utterance["time"] = time_i
         utterance["sender"] = sender
         utterance["contents"] = message
@@ -148,7 +147,7 @@ def output_csv(file_path, rows):
     fields = OrderedDict([(k, None) for k in rows[0].keys()])
     f = open(file_path, 'wb')
     try:
-        writer = csv.DictWriter(f, delimiter=',', fieldnames=fields)
+        writer = csv.DictWriter(f, delimiter=',', fieldnames=fields, quoting=csv.QUOTE_NONNUMERIC)
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
@@ -157,10 +156,10 @@ def output_csv(file_path, rows):
 
 
 def output_games(action_dir, utterance_dir, games_to_action_utterances):
-    for game, action_utterances in games_to_action_utterances:
+    for game, action_utterances in games_to_action_utterances.items():
         output_csv(os.path.join(action_dir, game), action_utterances[0])
         output_csv(os.path.join(utterance_dir, game), action_utterances[1])
 
 
-process_games = process_games(read_messy_file(input_file_path))
+processed_games = process_games(read_messy_file(input_file_path))
 output_games(output_action_dir, output_utterance_dir, processed_games)

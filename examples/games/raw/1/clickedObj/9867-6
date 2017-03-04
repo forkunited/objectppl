@@ -1,0 +1,13 @@
+"sTarget2","sTarget0","sCategory01","sCategory02","lCategory10","lCategory11","lCategory12","lClicked0","lClicked1","lClicked2","roundNum","lTarget1","lTarget0","lTarget2","sName0","sName1","sName2","lName1","lName0","lName2","sCategory12","sCategory11","sCategory10","lCategory02","lCategory01","lCategory00","gameid","sClicked2","time","sCategory00","sClicked1","sClicked0","sTarget1"
+0,1,"car","NA","vehicle","vehicle","vehicle",0,1,0,4,1,0,0,"convertible","sedan","train","convertible","train","sedan","vehicle","vehicle","vehicle","car","car","NA","9867-6",0,1455303422619,"car",0,1,0
+0,0,"table","NA","clothing","furniture","plant",0,1,0,5,1,0,0,"rosemary","coffeeTable","socks","coffeeTable","socks","rosemary","clothing","furniture","plant","NA","table","NA","9867-6",0,1455303461993,"NA",1,0,1
+0,1,"NA","NA","plant","clothing","animal",1,0,0,7,0,1,0,"sunflower","socks","horse","socks","sunflower","horse","animal","clothing","plant","NA","NA","flower","9867-6",0,1455303538359,"flower",0,1,0
+0,1,"NA","NA","animal","animal","animal",0,0,1,10,0,0,1,"swordFish","pig","cow","pig","cow","swordFish","animal","animal","animal","fish","NA","NA","9867-6",0,1455303711251,"fish",0,1,0
+1,0,"NA","candy","snack","plant","snack",0,0,1,12,0,0,1,"rosemary","pretzels","mnMs","rosemary","pretzels","mnMs","snack","snack","plant","candy","NA","NA","9867-6",1,1455303774717,"NA",0,0,0
+1,0,"NA","bird","animal","animal","animal",1,0,0,13,0,1,0,"kitten","bison","hummingBird","bison","hummingBird","kitten","animal","animal","animal","NA","NA","bird","9867-6",1,1455303799073,"NA",0,0,0
+0,0,"car","NA","furniture","animal","vehicle",0,0,1,15,0,0,1,"lobster","minivan","wardrobe","lobster","wardrobe","minivan","furniture","vehicle","animal","car","NA","NA","9867-6",0,1455303874105,"NA",1,0,1
+1,0,"NA","dog","animal","animal","animal",0,0,1,16,0,0,1,"pig","iguana","pug","iguana","pig","pug","animal","animal","animal","dog","NA","NA","9867-6",1,1455303892450,"NA",0,0,0
+0,1,"bear","NA","animal","animal","animal",0,0,1,17,0,0,1,"grizzlyBear","koalaBear","kitten","kitten","koalaBear","grizzlyBear","animal","animal","animal","bear","NA","bear","9867-6",0,1455303916043,"bear",0,1,0
+0,0,"bird","NA","animal","animal","animal",0,1,0,18,1,0,0,"squirrel","pigeon","hamster","pigeon","hamster","squirrel","animal","animal","animal","NA","bird","NA","9867-6",0,1455303965932,"NA",1,0,1
+0,1,"NA","NA","furniture","animal","plant",0,1,0,20,1,0,0,"eagle","ivy","bed","eagle","bed","ivy","furniture","plant","animal","NA","bird","NA","9867-6",0,1455304027370,"bird",0,1,0
+0,1,"NA","car","vehicle","vehicle","vehicle",1,0,0,23,0,1,0,"sportsCar","motorcycle","sedan","motorcycle","sportsCar","sedan","vehicle","vehicle","vehicle","car","NA","car","9867-6",0,1455304181149,"car",0,1,0
