@@ -84,8 +84,8 @@ def make_action_records(record):
 
     for i in range(len(listenerObjs)):
         for key in listenerObjs[i]:
-            action["l" + key + str(i)] = listenerObjs[i][key]
-            action["s" + key + str(i)] = speakerObjs[i][key]
+            action["l" + key + "_" + str(i)] = listenerObjs[i][key]
+            action["s" + key + "_" + str(i)] = speakerObjs[i][key]
 
     actions.append(action)
 
