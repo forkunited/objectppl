@@ -1,0 +1,63 @@
+// Run with:
+// webppl test/wppl/game/train_Ld.wppl --require gameppl --require webppl-nn --require . --random-seed 1 --iterations 100
+
+var args = parseArgs();
+var rootDir = args["rootDir"];
+var iterations = args["iterations"]*1;
+var batchSize = 100;
+var gradientSamples = 1;
+
+var inputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/Ld_in");
+var outputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/Ld_out");
+
+var D = makeDataFromFeatureMatrices(inputF, outputF, { inputSequence : true, outputSequence : false });
+
+var D_split = splitDataOnKey(D, 0.9, "game");
+var D_train = D_split[0];
+var D_test = D_split[1];
+
+var parameterPrior = function() {
+    return {
+        latentDimension: gameppl.feature.getFeatureMatrixVocabularySize(inputF),
+        outputDimension : gameppl.feature.getFeatureMatrixVocabularySize(outputF),
+        decoderType : DECODER_SOFTMAX,
+    }
+};
+
+var makeModel = function(params) {
+    var m = makeSequenceInputModel(params);
+    return function(input) {
+        return MultivariateBernoulli({ps: m(input)});
+    }
+};
+
+var obj = makeTrainingObj(makeModel, parameterPrior,
+    {   inputSequence: true,
+        outputSequence: false,
+        batchSize: batchSize,
+        modelObserves : false
+    });
+
+display("Training on " + D.length + " examples of size " + gameppl.feature.getFeatureMatrixVocabularySize(inputF));
+
+var results = train(obj, D_train, iterations, gradientSamples);
+
+var trainedModel = results[0];
+
+var classify = function(d) {
+    var maxIndex = gameppl.util.argmax(trainedModel(d.input).params.ps)[0];
+    return oneHot(maxIndex, d.output.length);
+};
+
+var Y_hat_train = map(classify, D_train);
+var Y_train = map(function(d) { return d.output; }, D_train);
+var Y_hat_test = map(classify, D_test);
+var Y_test = map(function(d) { return d.output; }, D_test);
+
+var trainAcc = gameppl.evaluation.sampleAccuracy(Y_hat_train, Y_train);
+var testAcc = gameppl.evaluation.sampleAccuracy(Y_hat_test, Y_test);
+var trainLL = evaluationModelLL(trainedModel, D_train);
+var testLL = evaluationModelLL(trainedModel, D_test);
+
+display("iterations\ttrainAcc\ttestAcc\ttrainLL\ttestLL");
+display(iterations + "\t" + trainAcc + "\t" + testAcc  +"\t" + trainLL + "\t" + testLL);

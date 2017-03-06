@@ -1,0 +1,50 @@
+// Run with:
+// webppl test/wppl/game/featurize_Ld.wppl --require gameppl --require . --gamesDir examples/games/json/1 --featureVocabDir examples/features/vocab --featureMatrixDir examples/features/mat
+
+var args = parseArgs();
+var gamesDir = args["gamesDir"];
+var featureVocabDir = args["featureVocabDir"];
+var featureMatrixDir = args["featureMatrixDir"];
+
+var utteranceFn = gameppl.rgame.getPairedUtterancesFn(gameppl.rgame.senders.SPEAKER);
+var actionFn = gameppl.rgame.getPairedActionsFn(gameppl.rgame.senders.SPEAKER)
+
+var inputFeatureTypes = [
+    {
+        name : "utok", type : gameppl.feature.types.UTTERANCE_TOKEN_ANNOTATION_ENUMERABLE,
+        parameters : {
+            annotation : gameppl.rgame.annotations.TOKEN,
+            minCount : 20,
+            type : gameppl.feature.enumerableTypes.ONE_HOT
+        }
+    },
+    {
+        name : "lName", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "lName_" }
+    },
+    {
+        name : "lCategory1", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "lCategory1_" }
+    }
+];
+
+var inputVector = ["utok", "lName", "lCategory1"];
+var inputf = gameppl.feature.initFeatureSet("Ld_in", gamesDir, utteranceFn, actionFn, inputFeatureTypes, inputVector);
+var inputF = gameppl.feature.computeFeatureSet(inputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
+
+var outputFeatureTypes = [
+    {
+        name : "lClicked", type : gameppl.feature.types.ACTION_DIMENSION_SCALAR,
+        parameters : { prefix : "lClicked_" }
+    }
+];
+
+var outputVector = ["lClicked"];
+var outputf = gameppl.feature.initFeatureSet("Ld_out", gamesDir, utteranceFn, actionFn, outputFeatureTypes, outputVector);
+var outputF = gameppl.feature.computeFeatureSet(outputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
+
+gameppl.feature.saveFeatureSet(inputf, featureVocabDir + "/Ld_in");
+gameppl.feature.saveFeatureSet(outputf, featureVocabDir + "/Ld_out");
+
+gameppl.feature.saveFeatureMatrix(inputF, featureMatrixDir + "/Ld_in");
+gameppl.feature.saveFeatureMatrix(outputF, featureMatrixDir + "/Ld_out");
