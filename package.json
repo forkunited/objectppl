@@ -1,0 +1,22 @@
+{
+  "name": "objectppl",
+  "version": "1.0.0",
+  "description": "Object reference language learning in webppl",
+  "main": "src/js/library.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "webppl": {
+    "wppl" : []
+  },
+  "author": "Bill McDowell",
+  "dependencies": {
+    "adnn": "^2.0.4",
+    "underscore": "^1.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forkunited/objectppl.git"
+  },
+  "homepage": "https://github.com/forkunited/objectppl"
+}
