@@ -13,8 +13,8 @@ var inputFeatureTypes = [
     {
         name : "utok", type : gameppl.feature.types.UTTERANCE_TOKEN_ANNOTATION_ENUMERABLE,
         parameters : {
-            annotation : gameppl.rgame.annotations.TOKEN,
-            minCount : 20,
+            annotation : gameppl.rgame.annotations.LEMMA,
+            minCount : 2,
             type : gameppl.feature.enumerableTypes.ONE_HOT
         }
     },
