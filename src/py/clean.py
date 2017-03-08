@@ -40,12 +40,12 @@ def make_action_records(record):
         target = 1
     listenerObjs[clickedLisIndex]["Name"] = record["nameClickedObj"]
     listenerObjs[clickedLisIndex]["Target"] = target
-    //listenerObjs[clickedLisIndex]["Clicked"] = 1
+    #listenerObjs[clickedLisIndex]["Clicked"] = 1
     listenerObjs[clickedLisIndex]["Category0"] = record["basiclevelClickedObj"]
     listenerObjs[clickedLisIndex]["Category1"] = record["superdomainClickedObj"]
     speakerObjs[clickedSpIndex]["Name"] = record["nameClickedObj"]
     speakerObjs[clickedSpIndex]["Target"] = target
-    //speakerObjs[clickedSpIndex]["Clicked"] = 1
+    #speakerObjs[clickedSpIndex]["Clicked"] = 1
     speakerObjs[clickedSpIndex]["Category0"] = record["basiclevelClickedObj"]
     speakerObjs[clickedSpIndex]["Category1"] = record["superdomainClickedObj"]
 
@@ -54,12 +54,12 @@ def make_action_records(record):
         target = 1
     listenerObjs[alt1LisIndex]["Name"] = record["alt1Name"]
     listenerObjs[alt1LisIndex]["Target"] = target
-    //listenerObjs[alt1LisIndex]["Clicked"] = 0
+    #listenerObjs[alt1LisIndex]["Clicked"] = 0
     listenerObjs[alt1LisIndex]["Category0"] = record["alt1Basiclevel"]
     listenerObjs[alt1LisIndex]["Category1"] = record["alt1superdomain"]
     speakerObjs[alt1SpIndex]["Name"] = record["alt1Name"]
     speakerObjs[alt1SpIndex]["Target"] = target
-    //speakerObjs[alt1SpIndex]["Clicked"] = 0
+    #speakerObjs[alt1SpIndex]["Clicked"] = 0
     speakerObjs[alt1SpIndex]["Category0"] = record["alt1Basiclevel"]
     speakerObjs[alt1SpIndex]["Category1"] = record["alt1superdomain"]
 
@@ -68,12 +68,12 @@ def make_action_records(record):
         target = 1
     listenerObjs[alt2LisIndex]["Name"] = record["alt2Name"]
     listenerObjs[alt2LisIndex]["Target"] = target
-    //listenerObjs[alt2LisIndex]["Clicked"] = 0
+    #listenerObjs[alt2LisIndex]["Clicked"] = 0
     listenerObjs[alt2LisIndex]["Category0"] = record["alt2Basiclevel"]
     listenerObjs[alt2LisIndex]["Category1"] = record["alt2superdomain"]
     speakerObjs[alt2SpIndex]["Name"] = record["alt2Name"]
     speakerObjs[alt2SpIndex]["Target"] = target
-    //speakerObjs[alt2SpIndex]["Clicked"] = 0
+    #speakerObjs[alt2SpIndex]["Clicked"] = 0
     speakerObjs[alt2SpIndex]["Category0"] = record["alt2Basiclevel"]
     speakerObjs[alt2SpIndex]["Category1"] = record["alt2superdomain"]
 
