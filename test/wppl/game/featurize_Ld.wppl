@@ -35,7 +35,7 @@ var inputF = gameppl.feature.computeFeatureSet(inputf, gamesDir, gameppl.rgame.g
 var outputFeatureTypes = [
     {
         name : "lClicked", type : gameppl.feature.types.ACTION_DIMENSION_SCALAR,
-        parameters : { prefix : "lClicked_" }
+        parameters : { prefix : "lClicked" }
     }
 ];
 
