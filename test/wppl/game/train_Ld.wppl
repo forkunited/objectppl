@@ -63,5 +63,5 @@ var testAcc = gameppl.evaluation.sampleAccuracy(Y_hat_test, Y_test, false);
 var trainLL = evaluationModelLL(trainedModel, D_train);
 var testLL = evaluationModelLL(trainedModel, D_test);
 
-display("iterations\ttrainAcc\ttestAcc\ttrainLL\ttestLL");
-display(iterations + "\t" + trainAcc + "\t" + testAcc  +"\t" + trainLL + "\t" + testLL);
+display("latentDim\titerations\ttrainAcc\ttestAcc\ttrainLL\ttestLL");
+display(latentDim + "\t" + iterations + "\t" + trainAcc + "\t" + testAcc  +"\t" + trainLL + "\t" + testLL);
