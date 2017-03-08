@@ -15,6 +15,7 @@ var inputFeatureTypes = [
         parameters : {
             annotation : gameppl.rgame.annotations.LEMMA,
             minCount : 2,
+            toLowerCase : true,
             type : gameppl.feature.enumerableTypes.ONE_HOT
         }
     },
@@ -34,7 +35,8 @@ var inputF = gameppl.feature.computeFeatureSet(inputf, gamesDir, gameppl.rgame.g
 
 var outputFeatureTypes = [
     {
-        name : "lClicked", type : gameppl.feature.types.ACTION_DIMENSION_SCALAR,
+        name : "lClicked",
+        type : gameppl.feature.types.ACTION_DIMENSION_SCALAR,
         parameters : { prefix : "lClicked" }
     }
 ];
