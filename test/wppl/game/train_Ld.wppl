@@ -12,10 +12,10 @@ var inputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat
 var outputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/Ld_out");
 
 var D = makeDataFromFeatureMatrices(inputF, outputF, { inputType : DATA_TYPE_SEQUENCE, outputType : DATA_TYPE_SCALAR });
-
-var D_split = splitDataOnKey(D, 0.9, "game");
-var D_train = D_split[0];
-var D_test = D_split[1];
+var partition = gameppl.partition.load(rootDir + "/examples/games/splits/1/default")
+var D_split = gameppl.partition.split(partition, D, gameppl.data.getDatumGame);
+var D_train = D_split['train'];
+var D_dev = D_split['dev'];
 
 var parameterPrior = function() {
     return {
@@ -55,13 +55,13 @@ var classify = function(d) {
 
 var Y_hat_train = map(classify, D_train);
 var Y_train = map(function(d) { return d.output; }, D_train);
-var Y_hat_test = map(classify, D_test);
-var Y_test = map(function(d) { return d.output; }, D_test);
+var Y_hat_dev = map(classify, D_dev);
+var Y_dev = map(function(d) { return d.output; }, D_dev);
 
 var trainAcc = gameppl.evaluation.sampleAccuracy(Y_hat_train, Y_train, false);
-var testAcc = gameppl.evaluation.sampleAccuracy(Y_hat_test, Y_test, false);
+var devAcc = gameppl.evaluation.sampleAccuracy(Y_hat_dev, Y_dev, false);
 var trainLL = evaluationModelLL(trainedModel, D_train);
-var testLL = evaluationModelLL(trainedModel, D_test);
+var devLL = evaluationModelLL(trainedModel, D_dev);
 
-display("latentDim\titerations\ttrainAcc\ttestAcc\ttrainLL\ttestLL");
-display(latentDim + "\t" + iterations + "\t" + trainAcc + "\t" + testAcc  +"\t" + trainLL + "\t" + testLL);
+display("latentDim\titerations\ttrainAcc\tdevAcc\ttrainLL\tdevLL");
+display(latentDim + "\t" + iterations + "\t" + trainAcc + "\t" + devAcc  +"\t" + trainLL + "\t" + devLL);
