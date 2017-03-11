@@ -28,8 +28,8 @@ var inputFeatureTypes = [
     }
 ];
 
-var inputVector = ["utok", "lName", "lCategory1"];
-var inputf = gameppl.feature.initFeatureSet("Ld_in", gamesDir, utteranceFn, actionFn, inputFeatureTypes, inputVector);
+var inputVector = ["uw2v", "lName", "lCategory1"];
+var inputf = gameppl.feature.initFeatureSet("Ld_in_w2v", gamesDir, utteranceFn, actionFn, inputFeatureTypes, inputVector);
 var inputF = gameppl.feature.computeFeatureSet(inputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
 
 var outputFeatureTypes = [
@@ -41,7 +41,7 @@ var outputFeatureTypes = [
 ];
 
 var outputVector = ["lClicked"];
-var outputf = gameppl.feature.initFeatureSet("Ld_out", gamesDir, utteranceFn, actionFn, outputFeatureTypes, outputVector);
+var outputf = gameppl.feature.initFeatureSet("Ld_out_w2v", gamesDir, utteranceFn, actionFn, outputFeatureTypes, outputVector);
 var outputF = gameppl.feature.computeFeatureSet(outputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
 
 gameppl.feature.saveFeatureSet(inputf, featureVocabDir + "/Ld_in_w2v");
