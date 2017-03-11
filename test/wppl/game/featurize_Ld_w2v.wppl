@@ -20,11 +20,11 @@ var inputFeatureTypes = [
     },
     {
         name : "lName", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
-        parameters : { prefix : "lName_" }
+        parameters : { prefix : "lName_", type : gameppl.feature.enumerableTypes.ONE_HOT }
     },
     {
         name : "lCategory1", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
-        parameters : { prefix : "lCategory1_" }
+        parameters : { prefix : "lCategory1_", type : gameppl.feature.enumerableTypes.ONE_HOT }
     }
 ];
 
