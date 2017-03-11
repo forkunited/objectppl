@@ -1,15 +1,17 @@
 // Run with:
-// webppl test/wppl/game/train_Ld.wppl --require gameppl --require webppl-nn --require . --random-seed 1 --iterations 100
+// webppl test/wppl/game/train_Ld.wppl --require gameppl --require webppl-nn --require . --random-seed 1 --iterations 100 --latentDim 25 --inputF Ld_in --outputF Ld_out
 
 var args = parseArgs();
 var rootDir = args["rootDir"];
+var inputFName = args["inputF"];
+var outputFName = args["outputF"];
 var iterations = args["iterations"]*1;
 var latentDim = args["latentDim"]*1;
 var batchSize = 100;
 var gradientSamples = 1;
 
-var inputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/Ld_in");
-var outputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/Ld_out");
+var inputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/" + inputFName);
+var outputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/" + outputFName);
 
 var D = makeDataFromFeatureMatrices(inputF, outputF, { inputType : DATA_TYPE_SEQUENCE, outputType : DATA_TYPE_SCALAR });
 var partition = gameppl.partition.load(rootDir + "/examples/games/splits/1/default")
