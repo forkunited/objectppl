@@ -6,8 +6,9 @@ import os
 from collections import OrderedDict
 
 input_file_path = sys.argv[1]
-output_action_dir = sys.argv[2]
-output_utterance_dir = sys.argv[3]
+input_filter_file_path = sys.argv[2]
+output_action_dir = sys.argv[3]
+output_utterance_dir = sys.argv[4]
 
 def read_messy_file(file_path):
     f = open(file_path, 'rt')
@@ -22,7 +23,7 @@ def read_messy_file(file_path):
         f.close()
     return D
 
-def make_action_records(record):
+def make_action_records(record, index):
     actions = []
 
     listenerObjs = [dict(), dict(), dict()]
@@ -84,6 +85,8 @@ def make_action_records(record):
     action["lClicked"] = clickedLisIndex
     action["sClicked"] = clickedSpIndex
 
+    action["trial_index"] = index
+
     for i in range(len(listenerObjs)):
         for key in listenerObjs[i]:
             action["l" + key + "_" + str(i)] = listenerObjs[i][key]
@@ -129,19 +132,30 @@ def make_utterance_records(record):
 
     return utterances
 
-def process_game(game_records):
+def process_game(game_records, filter):
     actions = []
     utterances = []
     for record in game_records:
-        actions.extend(make_action_records(record))
+        has_round = False
+        round = record["roundNum"]
+        for filter_record in filter:
+            if filter_record["roundNum"] == round:
+                has_round = True
+                break
+        if not has_round:
+            continue
+
+        actions.extend(make_action_records(record, filter_record["trial_inds"]))
         utterances.extend(make_utterance_records(record))
     return actions, utterances
 
 
-def process_games(game_record_dict):
+def process_games(game_record_dict, filter_dict):
     processed_games = dict()
     for key, value in game_record_dict.items():
-        processed_games[key] = process_game(value)
+        if key not in filter_dict:
+            continue
+        processed_games[key] = process_game(value, filter_dict[key])
     return processed_games
 
 
@@ -163,5 +177,5 @@ def output_games(action_dir, utterance_dir, games_to_action_utterances):
         output_csv(os.path.join(utterance_dir, game), action_utterances[1])
 
 
-processed_games = process_games(read_messy_file(input_file_path))
+processed_games = process_games(read_messy_file(input_file_path), read_messy_file(input_filter_file_path))
 output_games(output_action_dir, output_utterance_dir, processed_games)

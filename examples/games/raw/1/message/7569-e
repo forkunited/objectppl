@@ -1,45 +1,20 @@
 "roundNum","gameid","sender","contents","time"
-2,"7569-e","speaker","the object lives in a cold environment",1455304355817
-3,"7569-e","speaker","the object is blue",1455304366361
 4,"7569-e","speaker","the object is a piece of furniture",1455304386753
 5,"7569-e","speaker","the object is a vehicle",1455304407817
-6,"7569-e","speaker","the object is brightly colored",1455304427637
 8,"7569-e","speaker","the object is a flower",1455304454234
-13,"7569-e","speaker","the object is a reptile",1455304510602
 16,"7569-e","speaker","the object is candy",1455304544901
 17,"7569-e","speaker","it is a table",1455304568486
-20,"7569-e","speaker","it is a shirt",1455304598860
-20,"7569-e","listener","there is not shirt",1455304610699
-20,"7569-e","speaker","it is light blue",1455304625100
 22,"7569-e","speaker","it is a pet",1455304644745
 22,"7569-e","listener","",1455304649631
 23,"7569-e","speaker","it is a dog",1455304652942
-25,"7569-e","speaker","it is black",1455304692486
-27,"7569-e","speaker","it is like Nemo",1455304725706
-32,"7569-e","speaker","it is gummy ",1455304797572
 34,"7569-e","speaker","it is a bird",1455304832545
-37,"7569-e","speaker","it is chocolate",1455304866308
-38,"7569-e","speaker","it is an animal",1455304874451
 39,"7569-e","speaker","it is a table",1455304890771
-40,"7569-e","speaker","it swims",1455304911868
-42,"7569-e","speaker","it's yellow",1455304940013
-44,"7569-e","speaker","it's a bird",1455304964717
 48,"7569-e","speaker","it's a wild animal",1455305027093
 48,"7569-e","listener","",1455305073704
 48,"7569-e","speaker","it's brown",1455305077169
-49,"7569-e","speaker","it's a sea animal",1455305115937
-50,"7569-e","speaker","it's a tshirt",1455305130528
-51,"7569-e","speaker","it has hawaiian print",1455305146451
-51,"7569-e","listener","I'm only seeing two images in most cases",1455305148141
 56,"7569-e","speaker","it's outdoor furniture",1455305219028
-59,"7569-e","speaker","it's orange in the middle",1455305251090
 61,"7569-e","speaker","it's a car",1455305287507
 61,"7569-e","listener","",1455305289604
-64,"7569-e","speaker","it's red",1455305319532
 65,"7569-e","speaker","it's a vehicle",1455305327481
-68,"7569-e","speaker","it's the most colorful",1455305356854
-69,"7569-e","speaker","it has spots",1455305363886
-69,"7569-e","listener","3 mins left",1455305369693
-70,"7569-e","speaker","it's a pug\",1455305382731
 71,"7569-e","speaker","it's a van",1455305398848
 72,"7569-e","speaker","it's a hummingbird",1455305407016
