@@ -30,7 +30,7 @@ var contextToRoundPartition = function(part) {
     var valueFn = function(key, uA) {
         var gameid = gameppl.rgame.getUtteranceActionPairGame(uA);
         var roundNum = gameppl.rgame.getUtteranceActionPairRound(uA)
-        return { "gameid" : gameid, "roundNum" : roundNum };
+        return { "gameid" : gameid, "roundNum" : roundNum, "index" : uA.action.trial_index };
     };
 
     gameppl.partition.mapKeysAndValues(part, keyFn, valueFn);
