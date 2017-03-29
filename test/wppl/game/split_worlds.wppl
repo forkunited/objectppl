@@ -27,4 +27,16 @@ var checkTestTrainTargets = mapObject(function(context, uAs) {
 
 objectppl.util.utteranceActionToRoundPartition(split);
 
+var DSize = utteranceActions.length;
+var trainSize = _.keys(gameppl.partition.getPart(split, "train")).length;
+var devSize = _.keys(gameppl.partition.getPart(split, "dev")).length;
+var testSize = _.keys(gameppl.partition.getPart(split, "test")).length;
+var splitSize = trainSize + devSize + testSize;
+
+display("Train size: " + trainSize);
+display("Dev size: " + devSize);
+display("Test size: " + testSize);
+display("Split size: " + splitSize);
+display("Data size: " + DSize);
+
 gameppl.partition.save(split, outputPath);

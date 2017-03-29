@@ -1,4 +1,4 @@
-//webppl --require . test/wppl/game/split_objects.wppl --gamesDir <inDir> --outputPath <outFile> --split [0.6,0.2,0.2]
+//webppl --require . test/wppl/game/split_objects.wppl --gamesDir <inDir> --outputPath <outFile> --split [0.1,0.1,0.8]
 // FIXME This is a bit messy... but that's okay for now
 
 var args = parseArgs();
@@ -7,12 +7,24 @@ var gamesDir = args["gamesDir"];
 var outputPath = args["outputPath"];
 
 var utteranceActions = _.shuffle(_.flatten(gameppl.rgame.readGames(gamesDir, gameppl.rgame.getGameUtteranceActionPairs)));
-var split = gameppl.partition.init(utteranceActions, objectppl.util.getUtteranceActionObjectTarget, ["train", "dev", "test"], split, true);
+var split = gameppl.partition.init(utteranceActions, objectppl.util.getUtteranceActionObjectTarget, ["dev", "test", "train"], split, true);
 
 var train = gameppl.partition.getPart(split, "train");
 var dev = gameppl.partition.getPart(split, "dev");
 var test = gameppl.partition.getPart(split, "test");
 
 objectppl.util.utteranceActionToRoundPartition(split);
+
+var DSize = utteranceActions.length;
+var trainSize = _.keys(gameppl.partition.getPart(split, "train")).length;
+var devSize = _.keys(gameppl.partition.getPart(split, "dev")).length;
+var testSize = _.keys(gameppl.partition.getPart(split, "test")).length;
+var splitSize = trainSize + devSize + testSize;
+
+display("Train size: " + trainSize);
+display("Dev size: " + devSize);
+display("Test size: " + testSize);
+display("Split size: " + splitSize);
+display("Data size: " + DSize);
 
 gameppl.partition.save(split, outputPath);
