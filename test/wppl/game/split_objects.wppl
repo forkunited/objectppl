@@ -1,0 +1,18 @@
+//webppl --require . test/wppl/game/split_objects.wppl --gamesDir <inDir> --outputPath <outFile> --split [0.6,0.2,0.2]
+// FIXME This is a bit messy... but that's okay for now
+
+var args = parseArgs();
+var split = JSON.parse(args["split"]);
+var gamesDir = args["gamesDir"];
+var outputPath = args["outputPath"];
+
+var utteranceActions = _.shuffle(_.flatten(gameppl.rgame.readGames(gamesDir, gameppl.rgame.getGameUtteranceActionPairs)));
+var split = gameppl.partition.init(utteranceActions, objectppl.util.getUtteranceActionObjectTarget, ["train", "dev", "test"], split, true);
+
+var train = gameppl.partition.getPart(split, "train");
+var dev = gameppl.partition.getPart(split, "dev");
+var test = gameppl.partition.getPart(split, "test");
+
+objectppl.util.utteranceActionToRoundPartition(split);
+
+gameppl.partition.save(split, outputPath);

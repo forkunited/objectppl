@@ -25,6 +25,6 @@ var checkTestTrainTargets = mapObject(function(context, uAs) {
         display("Warning: " + context + " dev target does not occur in training.");
 }, dev);
 
-objectppl.util.contextToRoundPartition(split);
+objectppl.util.utteranceActionToRoundPartition(split);
 
 gameppl.partition.save(split, outputPath);

@@ -20,7 +20,7 @@ var getUtteranceActionObjectContext = function(uA) {
     return objs[0] + "." + objs[1] + "." + objs[2] + "-" + target
 };
 
-var contextToRoundPartition = function(part) {
+var utteranceActionToRoundPartition = function(part) {
     var keyFn = function(key, uA) {
         var gameid = gameppl.rgame.getUtteranceActionPairGame(uA);
         var roundNum = gameppl.rgame.getUtteranceActionPairRound(uA)
@@ -39,5 +39,5 @@ var contextToRoundPartition = function(part) {
 module.exports = {
     getUtteranceActionObjectTarget : getUtteranceActionObjectTarget,
     getUtteranceActionObjectContext : getUtteranceActionObjectContext,
-    contextToRoundPartition : contextToRoundPartition
+    utteranceActionToRoundPartition : utteranceActionToRoundPartition
 };
