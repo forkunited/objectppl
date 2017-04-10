@@ -1,7 +1,7 @@
 // Run with:
 // webppl test/wppl/game/train_Ld.wppl --require gameppl --require webppl-nn --require . --random-seed 1 --iterations 100 --latentDim 25 --inputF Ld_in --outputF Ld_out
 
-var args = parseArgs();
+var args = util_parseArgs();
 var rootDir = args["rootDir"];
 var inputFName = args["inputF"];
 var outputFName = args["outputF"];

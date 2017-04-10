@@ -1,7 +1,7 @@
 //webppl --require . test/wppl/game/split_objects.wppl --gamesDir <inDir> --outputPath <outFile> --split [0.1,0.1,0.8]
 // FIXME This is a bit messy... but that's okay for now
 
-var args = parseArgs();
+var args = util_parseArgs();
 var split = JSON.parse(args["split"]);
 var gamesDir = args["gamesDir"];
 var outputPath = args["outputPath"];

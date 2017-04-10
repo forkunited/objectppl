@@ -1,7 +1,7 @@
 // Run with:
 // webppl test/wppl/game/featurize_Ld.wppl --require gameppl --require . --gamesDir examples/games/json/1 --featureVocabDir examples/features/vocab --featureMatrixDir examples/features/mat
 
-var args = parseArgs();
+var args = util_parseArgs();
 var gamesDir = args["gamesDir"];
 var featureVocabDir = args["featureVocabDir"];
 var featureMatrixDir = args["featureMatrixDir"];
