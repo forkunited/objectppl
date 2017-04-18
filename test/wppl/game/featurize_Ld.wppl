@@ -37,7 +37,7 @@ var outputFeatureTypes = [
     {
         name : "lClicked",
         type : gameppl.feature.types.ACTION_DIMENSION_SCALAR,
-        parameters : { prefix : "lClicked" }
+        parameters : { prefix : "lClicked_" }
     }
 ];
 

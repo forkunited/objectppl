@@ -91,6 +91,14 @@ def make_action_records(record, index):
         for key in listenerObjs[i]:
             action["l" + key + "_" + str(i)] = listenerObjs[i][key]
             action["s" + key + "_" + str(i)] = speakerObjs[i][key]
+            if listenerObjs[i]["Target"] == 1:
+                action["lTargetName"] = listenerObjs[i]["Name"]
+                action["lTargetCategory0"] = listenerObjs[i]["Category0"]
+                action["lTargetCategory1"] = listenerObjs[i]["Category1"]
+            if speakerObjs[i]["Target"] == 1:
+                action["sTargetName"] = speakerObjs[i]["Name"]
+                action["sTargetCategory0"] = speakerObjs[i]["Category0"]
+                action["sTargetCategory1"] = speakerObjs[i]["Category1"]
 
     actions.append(action)
 

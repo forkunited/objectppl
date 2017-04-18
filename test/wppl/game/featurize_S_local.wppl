@@ -1,0 +1,47 @@
+// Run with:
+// webppl test/wppl/game/featurize_S_local.wppl --require gameppl --require . --gamesDir examples/games/json/1 --featureVocabDir examples/features/vocab --featureMatrixDir examples/features/mat
+
+var args = util_parseArgs();
+var gamesDir = args["gamesDir"];
+var featureVocabDir = args["featureVocabDir"];
+var featureMatrixDir = args["featureMatrixDir"];
+
+var utteranceFn = gameppl.rgame.getPairedUtterancesFn(gameppl.rgame.senders.SPEAKER);
+var actionFn = gameppl.rgame.getPairedActionsFn(gameppl.rgame.senders.SPEAKER)
+
+var inputFeatureTypes = [
+    {
+        name : "sTargetName", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sTargetName_", type : gameppl.feature.enumerableTypes.ONE_HOT }
+    },
+    {
+        name : "sTargetCategory1", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sTargetCategory1_", type : gameppl.feature.enumerableTypes.ONE_HOT }
+    }
+];
+
+var inputVector = ["sTargetName", "sTargetCategory1"];
+var inputf = gameppl.feature.initFeatureSet("S_in", gamesDir, utteranceFn, actionFn, inputFeatureTypes, inputVector);
+var inputF = gameppl.feature.computeFeatureSet(inputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
+
+var outputFeatureTypes = [
+    {
+        name : "utok", type : gameppl.feature.types.UTTERANCE_TOKEN_ANNOTATION_ENUMERABLE,
+        parameters : {
+            annotation : gameppl.rgame.annotations.LEMMA,
+            minCount : 2,
+            toLowerCase : true,
+            type : gameppl.feature.enumerableTypes.INDEX
+        }
+    }
+];
+
+var outputVector = ["utok"];
+var outputf = gameppl.feature.initFeatureSet("S_local_out", gamesDir, utteranceFn, actionFn, outputFeatureTypes, outputVector);
+var outputF = gameppl.feature.computeFeatureSet(outputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
+
+gameppl.feature.saveFeatureSet(inputf, featureVocabDir + "/S_local_in");
+gameppl.feature.saveFeatureSet(outputf, featureVocabDir + "/S_local_out");
+
+gameppl.feature.saveFeatureMatrix(inputF, featureMatrixDir + "/S_local_in");
+gameppl.feature.saveFeatureMatrix(outputF, featureMatrixDir + "/S_local_out");
