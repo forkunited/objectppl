@@ -12,11 +12,11 @@ var actionFn = gameppl.rgame.getPairedActionsFn(gameppl.rgame.senders.SPEAKER)
 var inputFeatureTypes = [
     {
         name : "sTargetName", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
-        parameters : { prefix : "sTargetName_", type : gameppl.feature.enumerableTypes.ONE_HOT }
+        parameters : { prefix : "sTargetName", type : gameppl.feature.enumerableTypes.ONE_HOT }
     },
     {
         name : "sTargetCategory1", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
-        parameters : { prefix : "sTargetCategory1_", type : gameppl.feature.enumerableTypes.ONE_HOT }
+        parameters : { prefix : "sTargetCategory1", type : gameppl.feature.enumerableTypes.ONE_HOT }
     }
 ];
 
