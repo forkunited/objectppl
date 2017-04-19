@@ -21,7 +21,7 @@ var inputFeatureTypes = [
 ];
 
 var inputVector = ["sTargetName", "sTargetCategory1"];
-var inputf = gameppl.feature.initFeatureSet("S_in", gamesDir, utteranceFn, actionFn, inputFeatureTypes, inputVector);
+var inputf = gameppl.feature.initFeatureSet("S_local_in", gamesDir, utteranceFn, actionFn, inputFeatureTypes, inputVector);
 var inputF = gameppl.feature.computeFeatureSet(inputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
 
 var outputFeatureTypes = [
