@@ -1,0 +1,71 @@
+// Run with:
+// webppl test/wppl/game/featurize_S.wppl --require gameppl --require . --gamesDir examples/games/json/1 --featureVocabDir examples/features/vocab --featureMatrixDir examples/features/mat
+
+var args = util_parseArgs();
+var gamesDir = args["gamesDir"];
+var featureVocabDir = args["featureVocabDir"];
+var featureMatrixDir = args["featureMatrixDir"];
+
+var utteranceFn = gameppl.rgame.getPairedUtterancesFn(gameppl.rgame.senders.SPEAKER);
+var actionFn = gameppl.rgame.getPairedActionsFn(gameppl.rgame.senders.SPEAKER)
+
+var inputFeatureTypes = [
+    {
+        name : "sName_0", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sName_0", vocabPrefix : "sName_", type : gameppl.feature.enumerableTypes.INDEX, ignoreDims : true }
+    },
+    {
+        name : "sName_1", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sName_1", vocabPrefix : "sName_", type : gameppl.feature.enumerableTypes.INDEX, ignoreDims : true }
+    },
+    {
+        name : "sName_2", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sName_2", vocabPrefix : "sName_", type : gameppl.feature.enumerableTypes.INDEX, ignoreDims : true }
+    },
+    {
+        name : "sCategory1_0", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sCategory1_0", vocabPrefix : "sCategory1_", type : gameppl.feature.enumerableTypes.INDEX, ignoreDims : true }
+    },
+    {
+        name : "sCategory1_1", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sCategory1_1", vocabPrefix : "sCategory1_", type : gameppl.feature.enumerableTypes.INDEX, ignoreDims : true }
+    },
+    {
+        name : "sCategory1_2", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sCategory1_2", vocabPrefix : "sCategory1_", type : gameppl.feature.enumerableTypes.INDEX, ignoreDims : true }
+    },
+    {
+        name : "sTargetName", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sTargetName", vocabPrefix : "sName_", type : gameppl.feature.enumerableTypes.INDEX, ignoreDims : true }
+    },
+    {
+        name : "sTargetCategory1", type : gameppl.feature.types.ACTION_DIMENSION_ENUMERABLE,
+        parameters : { prefix : "sTargetCategory1", vocabPrefix : "sCategory1_", type : gameppl.feature.enumerableTypes.INDEX, ignoreDims : true }
+    }
+];
+
+var inputVector = ["sName_0","sName_1","sName_2","sCategory1_0","sCategory1_1","sCategory1_2","sTargetName","sTargetCategory1"];
+var inputf = gameppl.feature.initFeatureSet("incS1_in", gamesDir, utteranceFn, actionFn, inputFeatureTypes, inputVector);
+var inputF = gameppl.feature.computeFeatureSet(inputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
+
+var outputFeatureTypes = [
+    {
+        name : "utok", type : gameppl.feature.types.UTTERANCE_TOKEN_ANNOTATION_ENUMERABLE,
+        parameters : {
+            annotation : gameppl.rgame.annotations.LEMMA,
+            minCount : 2,
+            toLowerCase : true,
+            type : gameppl.feature.enumerableTypes.INDEX
+        }
+    }
+];
+
+var outputVector = ["utok"];
+var outputf = gameppl.feature.initFeatureSet("incS1_out", gamesDir, utteranceFn, actionFn, outputFeatureTypes, outputVector);
+var outputF = gameppl.feature.computeFeatureSet(outputf, gamesDir, gameppl.rgame.getGameUtteranceActionPairs);
+
+gameppl.feature.saveFeatureSet(inputf, featureVocabDir + "/incS1_in");
+gameppl.feature.saveFeatureSet(outputf, featureVocabDir + "/incS1_out");
+
+gameppl.feature.saveFeatureMatrix(inputF, featureMatrixDir + "/incS1_in");
+gameppl.feature.saveFeatureMatrix(outputF, featureMatrixDir + "/incS1_out");
