@@ -10,9 +10,10 @@ var latentDim = args["latentDim"]*1;
 var splitName = args["splitName"];
 var splitType = args["splitType"];
 var rsaAlpha = 1.0;
-var maxUtteranceLength = 5;
+var maxUtteranceLength = 4;
 var approximationBeamSize = 5;
-var batchSize = 10;
+var languagePruneSize = 100;
+var batchSize = 1;
 var gradientSamples = 1;
 
 var inputf = gameppl.feature.loadFeatureSet(rootDir + "/examples/features/vocab/" + inputFName);
@@ -42,6 +43,7 @@ var s1model = s1inc_initTrainedModel({
     l0inputDimension : l0inputDimension,
     latentDimension : latentDim,
     beamSize : approximationBeamSize,
+    languagePruneSize : languagePruneSize,
     iterations : iterations,
     gradientSamples : gradientSamples,
     batchSize : batchSize,
