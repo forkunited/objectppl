@@ -11,9 +11,9 @@ var splitName = args["splitName"];
 var splitType = args["splitType"];
 var rsaAlpha = 1.0;
 var maxUtteranceLength = 5;
-var approximationBeamSize = 2;
+var approximationBeamSize = 5;
 var languagePruneSize = Infinity;
-var batchSize = 10;
+var batchSize = 100;
 var gradientSamples = 1;
 
 var inputf = gameppl.feature.loadFeatureSet(rootDir + "/examples/features/vocab/" + inputFName);
@@ -103,7 +103,7 @@ map(function(datum) {
     }, gameppl.dist.distToArray(s1Dist, 3));
 
     display("\n");
-}, gameppl.util._first(D_dev, 1));
+}, gameppl.util._first(D_dev, 30));
 
 var trainEval = evaluation_modelEncLL(s1model, D_train, s1inc_getDistributionFn(s1model));
 var devEval = evaluation_modelEncLL(s1model, D_dev, s1inc_getDistributionFn(s1model));
