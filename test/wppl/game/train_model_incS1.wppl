@@ -16,11 +16,15 @@ var languagePruneSize = Infinity;
 var batchSize = 100;
 var gradientSamples = 1;
 
+display("Loading feature matrices...");
+
 var inputf = gameppl.feature.loadFeatureSet(rootDir + "/examples/features/vocab/" + inputFName);
 var outputf = gameppl.feature.loadFeatureSet(rootDir + "/examples/features/vocab/" + outputFName);
 
 var inputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/" + inputFName);
 var outputF = gameppl.feature.loadFeatureMatrix(rootDir + "/examples/features/mat/" + outputFName);
+
+display("Constructing data set...");
 
 var D = data_makeFromFeatureMatrices(inputF, outputF, { inputType : DATA_TYPE_VECTOR, outputType : DATA_TYPE_SCALAR_SEQUENCE, maxSequenceLength : maxUtteranceLength });
 var partition = gameppl.partition.load(rootDir + "/examples/games/splits/1/" + splitName);
